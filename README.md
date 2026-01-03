@@ -1,196 +1,89 @@
-```md
-#  AI Customer Service Agent  
-## RAG-Based Intelligent Support System over Tickets & Dialogues
+AI Customer Service Agent (Telco Support)
+Project Overview
 
----
+This project focuses on building an AI-powered Customer Service Agent for a Telecommunications (Telco) support environment using Retrieval-Augmented Generation (RAG).
+The goal is to assist customer support teams by automating responses to frequently asked questions, guiding users through basic troubleshooting steps, and escalating complex or sensitive issues to human agents when required.
 
-## Overview
+By leveraging Large Language Models (LLMs) together with a vector database of historical telecom support tickets and dialogue conversations, the system delivers accurate, context-aware, and consistent responses. This reduces response time, lowers operational workload, and improves overall customer experience.
 
-The AI Customer Service Agent is an intelligent support assistant designed to automatically answer customer queries by learning from historical support tickets and customer–agent conversations.
+Tools & Technologies
 
-Unlike traditional rule-based chatbots that respond with fixed answers, this system uses Retrieval-Augmented Generation (RAG) to ensure that every response is grounded in real past data, making answers more accurate, consistent, and trustworthy.
+The following technology stack is used to build the system:
 
-The system significantly reduces repetitive workload on human support agents while improving response speed and customer satisfaction.
+Programming Language: Python 3.10+
 
----
+Orchestration Framework: LangChain (for managing retrieval and generation workflows)
 
-## Problem Statement
+Vector Database: ChromaDB or FAISS (for semantic search over tickets)
 
-Customer support teams across industries (e-commerce, banking, SaaS, telecom) face common challenges:
+Embeddings: HuggingFace Sentence / Instruct Embeddings or OpenAI Embeddings
 
-- Large volumes of repetitive customer queries
-- Manual searching of previous tickets for similar issues
-- Inconsistent responses across different agents
-- Increased response time and operational cost
+LLM: GPT-4o / GPT-3.5-turbo (OpenAI) or open-source models (e.g., LLaMA 3 via Ollama)
 
-Despite having large amounts of historical ticket data, organizations do not effectively reuse this knowledge during live customer interactions.
+API Framework: FastAPI (for serving the /ask endpoint)
 
----
+Frontend (Optional): Streamlit or React (chat-based interface)
 
-## Proposed Solution
+Datasets
 
-We propose an AI Customer Service Agent that uses RAG (Retrieval-Augmented Generation) to generate accurate, context-aware responses by retrieving relevant past tickets and dialogue records before generating an answer.
+The system uses publicly available and simulated telecom-related datasets to build its knowledge base:
 
-Instead of directly generating a reply, the system:
-1. Searches historical tickets and chat logs
-2. Retrieves the most relevant conversations
-3. Uses this retrieved context to generate grounded responses
-4. Provides clear, human-like answers backed by real data
+Telecom Customer Support Dialogues (Kaggle):
+Conversation logs between customers and support agents.
 
-This approach minimizes hallucinations and ensures consistent customer support quality.
+Telecom Support Tickets:
+Historical ticket data containing issue descriptions, categories, priority, and resolutions.
 
----
+Knowledge Base Articles:
+FAQ-style documents covering billing, network issues, SIM problems, and plan upgrades.
 
-## Key Innovation: Retrieval-First Response Generation
+Step-by-Step Implementation Plan
+1. Data Preparation
 
-Traditional chatbots:
-- Generate responses directly from the LLM
-- May hallucinate or give generic answers
+Data Ingestion: Load raw ticket and dialogue data from CSV/JSON files
 
-This system introduces a **retrieval-first architecture**, where:
-- The AI **must retrieve past tickets before answering**
-- Responses are limited to verified historical knowledge
-- The system behaves like an experienced support agent trained on years of tickets
+Cleaning: Remove personally identifiable information (PII), noise, and irrelevant metadata
 
----
+Structuring: Convert data into a standard format such as:
+Question: <customer issue>
+Answer: <agent resolution>
 
-## End-to-End Interaction Flow
+Chunking: Split long conversations into smaller, meaningful chunks (500–1000 tokens) for effective retrieval
 
-```
+2. Indexing & Embedding
 
-Customer Query
-↓
-Query Embedding
-↓
-Ticket & Dialogue Retrieval (Vector Database)
-↓
-Relevant Context Selection
-↓
-LLM Response Generation (RAG)
-↓
-Final Answer to Customer
+Embedding Generation: Convert cleaned text chunks into vector representations using an embedding model
 
-````
+Vector Storage: Store vectors in ChromaDB or FAISS along with metadata (issue type, urgency, source)
 
----
+Retriever Setup: Configure semantic search to retrieve the most relevant chunks for a given query
 
-## Example Interaction
+3. RAG Query Pipeline (/ask API)
 
-### Step 1: Customer Query
-```json
-{
-  "query": "My order is delayed. When will it arrive?"
-}
-````
+Query Input: The /ask endpoint accepts a user query in JSON format
 
-### Step 2: Retrieved Past Tickets
+Retrieval: The system searches the vector database for relevant past tickets and conversations
 
-```json
-{
-  "retrieved_context": [
-    "Order delays usually occur due to logistics issues",
-    "Customers are informed within 48 hours",
-    "Refund applicable after 7 days of delay"
-  ]
-}
-```
+Augmentation: Retrieved context is combined with the user query to form a grounded prompt
 
-### Step 3: Final AI Response
+Generation: The LLM generates a response strictly based on retrieved context to reduce hallucinations
 
-```json
-{
-  "response": "Your order may be delayed due to logistics issues. 
-  Our records show that customers are usually informed within 48 hours. 
-  If the delay exceeds 7 days, you may be eligible for a refund."
-}
-```
+Response Output: The final answer is returned along with references such as ticket IDs or source labels
 
----
+4. Escalation Rules & Human Handoff
 
-## System Architecture
+The system includes logic to decide when human intervention is required:
 
-### 1. Ticket & Dialogue Ingestion
+Sentiment Analysis: Escalates if user sentiment is highly negative or angry
 
-* Loads historical customer tickets and chat conversations
-* Cleans and preprocesses text data
-* Converts text into vector embeddings
+Confidence Threshold: Escalates if retrieval similarity score falls below a defined threshold (e.g., < 0.7)
 
-### 2. Vector Storage
+Keyword Triggers: Detects phrases such as:
 
-* Stores embeddings in a vector database
-* Enables fast semantic search
-* Scales with increasing ticket volume
+“I want to speak to a manager”
 
-### 3. Retrieval-Augmented Generation (RAG)
+“Cancel my service”
 
-* Retrieves only the most relevant past tickets
-* Passes retrieved context to the LLM
-* Prevents hallucinated or unsupported responses
+“Legal action”
 
-### 4. Response Generator
-
-* Produces clear, professional, human-like replies
-* Ensures responses are grounded in retrieved data
-
----
-
-## Tech Stack
-
-| Layer                | Technology                             |
-| -------------------- | -------------------------------------- |
-| Programming Language | Python 3                               |
-| LLM                  | OpenAI / Gemini / LLaMA (configurable) |
-| RAG Framework        | LangChain                              |
-| Vector Database      | ChromaDB / FAISS                       |
-| Embeddings           | Sentence Transformers                  |
-| Backend (Optional)   | FastAPI                                |
-| Frontend (Optional)  | Streamlit                              |
-
-## Installation & Setup
-
-### 1. Clone the Repository
-
-```bash
-git clone <your-repo-url>
-cd project-root
-```
-
-### 2. Create Virtual Environment
-
-```bash
-python -m venv venv
-source venv/bin/activate     # Windows: venv\Scripts\activate
-```
-
-### 3. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Run the Application
-
-```bash
-python app.py
-```
-
----
-
-## Safety & Reliability
-
-* Responses are grounded in historical ticket data
-* No blind or unsupported answers
-* Reduces hallucination risk
-* Suitable for real-world customer service use
-
----
-
-## Use Cases
-
-* E-commerce customer support
-* Banking & finance helpdesks
-* Telecom support systems
-* SaaS product customer service
-* AI support automation demos
-
----
+Fallback Action: Returns a structured ESCALATE flag to route the case to a human support agent
