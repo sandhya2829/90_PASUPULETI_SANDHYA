@@ -5,18 +5,23 @@ This project focuses on building an AI-powered Customer Service Agent for a Tele
 The system assists customer support teams by automating responses to frequently asked questions, guiding users through basic troubleshooting steps, and escalating complex issues to human agents when required.By leveraging Large Language Models (LLMs) together with a vector database of historical telecom support tickets and dialogue conversations, the system delivers accurate, context-aware, and consistent responses. This improves response time, reduces agent workload, and enhances customer satisfaction.
 
 # Tools & Technologies
+- Python – Core programming language for data processing, retrieval, and orchestration
 
-The following technology stack is used to build the system:
+- Pandas – Data loading and preprocessing of customer interaction datasets
 
-Programming Language: Python 3.10+
+- Sentence-Transformers – Generating semantic embeddings (all-MiniLM-L6-v2)
 
-Orchestration Framework: LangChain
+- ChromaDB – Vector database for storing and retrieving embeddings
 
-Vector Database: ChromaDB or FAISS
+- LangChain (Community) – Integration framework for embeddings, vector stores, and RAG pipeline
 
-Embeddings: HuggingFace Sentence / Instruct Embeddings or OpenAI Embeddings
+- Google Gemini API – Large Language Model used for context-aware answer generation
 
-LLM: GPT-4o / GPT-3.5-turbo or open-source models 
+- Retrieval-Augmented Generation (RAG) – Architecture combining retrieval with LLM-based generation
+
+- JSON – Structured format for final responses (answer, escalation flag, source IDs)
+
+- VS Code / Command Line – Development and execution environment
 
 # Datasets
 
