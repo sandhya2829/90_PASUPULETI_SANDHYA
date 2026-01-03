@@ -1,12 +1,12 @@
-AI Customer Service Agent (Telco Support)
-Project Overview
+# AI Customer Service Agent (Telco Support)
+## Project Overview
 
 This project focuses on building an AI-powered Customer Service Agent for a Telecommunications (Telco) support environment using Retrieval-Augmented Generation (RAG).
 The system assists customer support teams by automating responses to frequently asked questions, guiding users through basic troubleshooting steps, and escalating complex issues to human agents when required.
 
 By leveraging Large Language Models (LLMs) together with a vector database of historical telecom support tickets and dialogue conversations, the system delivers accurate, context-aware, and consistent responses. This improves response time, reduces agent workload, and enhances customer satisfaction.
 
-Tools & Technologies
+# Tools & Technologies
 
 The following technology stack is used to build the system:
 
@@ -24,7 +24,7 @@ API Framework: FastAPI
 
 Frontend (Optional): Streamlit or React
 
-Datasets
+# Datasets
 
 The system uses publicly available and simulated telecom-related datasets:
 
@@ -34,8 +34,8 @@ Telecom Support Tickets – issue descriptions, categories, and resolutions
 
 Knowledge Base Articles – FAQs for billing, network issues, SIM problems, and plan upgrades
 
-Step-by-Step Implementation Plan
-1. Data Preparation
+# Step-by-Step Implementation Plan
+## 1. Data Preparation
 
 Load raw ticket and dialogue data from CSV/JSON files
 
@@ -49,7 +49,7 @@ Answer: Agent resolution
 
 Split long conversations into smaller chunks (500–1000 tokens)
 
-2. Indexing & Embedding
+## 2. Indexing & Embedding
 
 Generate vector embeddings for all cleaned text chunks
 
@@ -57,7 +57,7 @@ Store embeddings in ChromaDB or FAISS with metadata
 
 Configure a semantic retriever to find relevant content
 
-3. RAG Query Pipeline (/ask API)
+## 3. RAG Query Pipeline (/ask API)
 
 Accept customer queries via the /ask endpoint
 
@@ -69,7 +69,7 @@ Generate responses using an LLM based only on retrieved data
 
 Return the final answer along with source references
 
-4. Escalation Rules & Human Handoff
+## 4. Escalation Rules & Human Handoff
 
 The system determines when to escalate issues to human agents:
 
@@ -85,24 +85,4 @@ Keyword Triggers: Detects phrases like:
 
 “Legal action”
 
-Fallback Action: Returns an ESCALATE flag for human support routing
 
-Use Cases
-
-Telecom customer support automation
-
-Billing and network issue resolution
-
-Support agent assistance tools
-
-AI-driven helpdesk systems
-
-Safety & Reliability
-
-Responses are grounded in historical ticket data
-
-Reduces hallucinations and incorrect answers
-
-Clear boundaries for AI vs human intervention
-
-Designed for responsible AI usage
