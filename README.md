@@ -1,4 +1,4 @@
-##AI Customer Service Agent (Telco Support)##
+#AI Customer Service Agent (Telco Support)#
 Project Overview
 
 This project focuses on building an AI-powered Customer Service Agent for a Telecommunications (Telco) support environment using Retrieval-Augmented Generation (RAG).
