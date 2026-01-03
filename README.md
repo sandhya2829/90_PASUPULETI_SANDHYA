@@ -1,4 +1,4 @@
-# AI Customer Service Agent (Telco Support)
+# AI Customer Service Agent (Telecom Support)
 ## Project Overview
 
 This project focuses on building an AI-powered Customer Service Agent for a Telecommunications (Telco) support environment using Retrieval-Augmented Generation (RAG).
@@ -31,6 +31,7 @@ Telecom Customer Support Dialogues (Kaggle) – customer–agent chat conversati
 Telecom Support Tickets – issue descriptions, categories, and resolutions
 
 Knowledge Base Articles – FAQs for billing, network issues, SIM problems, and plan upgrades
+
 Dataset Link: https://www.kaggle.com/datasets/avinashok/telecomagentcustomerinteractiontext
 
 # Step-by-Step Implementation Plan
@@ -71,8 +72,6 @@ Return the final answer along with source references
 ## 4. Escalation Rules & Human Handoff
 
 The system determines when to escalate issues to human agents:
-
-Sentiment Analysis: Escalates when user sentiment is negative or angry
 
 Confidence Threshold: Escalates if retrieval score is below a set threshold (e.g., < 0.7)
 
