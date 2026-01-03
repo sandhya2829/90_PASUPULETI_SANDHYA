@@ -16,9 +16,7 @@ Vector Database: ChromaDB or FAISS
 
 Embeddings: HuggingFace Sentence / Instruct Embeddings or OpenAI Embeddings
 
-LLM: GPT-4o / GPT-3.5-turbo or open-source models (e.g., LLaMA 3 via Ollama)
-
-API Framework: FastAPI
+LLM: GPT-4o / GPT-3.5-turbo or open-source models 
 
 # Datasets
 
