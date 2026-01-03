@@ -49,15 +49,15 @@ Each record was converted into a clear natural-language document by combining th
 
 ## 3. RAG Query Pipeline
 
-Accept customer queries via the /ask endpoint
+- A user query is taken as input and converted into a vector embedding using the same embedding model used during indexing.
 
-Retrieve relevant past tickets and dialogues
+- The query embedding is compared against stored document embeddings in the Chroma vector database using semantic similarity search.
 
-Combine retrieved context with the user query
+- The top relevant historical customer interaction records are retrieved based on similarity scores.
 
-Generate responses using an LLM based only on retrieved data
+- Each retrieved result includes the processed text along with metadata such as record ID and issue category.
 
-Return the final answer along with source references
+- The retrieved records provide contextual knowledge for the response generation stage of the RAG pipeline.
 
 ## 4. Escalation Rules & Human Handoff
 
