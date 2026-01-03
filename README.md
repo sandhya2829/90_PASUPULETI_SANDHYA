@@ -56,4 +56,3 @@ Instead of guessing, the AI:
 - Large Language Models (LLMs)  
 - Retrieval-Augmented Generation (RAG)  
 - Vector Database (for ticket storage)  
-- Streamlit / Web UI (optional)
