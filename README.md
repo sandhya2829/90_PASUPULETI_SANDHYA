@@ -20,8 +20,6 @@ LLM: GPT-4o / GPT-3.5-turbo or open-source models (e.g., LLaMA 3 via Ollama)
 
 API Framework: FastAPI
 
-Frontend (Optional): Streamlit or React
-
 # Datasets
 
 The system uses publicly available and simulated telecom-related datasets:
@@ -57,7 +55,7 @@ Store embeddings in ChromaDB or FAISS with metadata
 
 Configure a semantic retriever to find relevant content
 
-## 3. RAG Query Pipeline (/ask API)
+## 3. RAG Query Pipeline
 
 Accept customer queries via the /ask endpoint
 
