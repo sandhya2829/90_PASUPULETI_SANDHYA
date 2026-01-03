@@ -1,14 +1,14 @@
 ```md
-# 🤖 AI Customer Service Agent  
+#  AI Customer Service Agent  
 ## RAG-Based Intelligent Support System over Tickets & Dialogues
 
 ---
 
 ## Overview
 
-The **AI Customer Service Agent** is an intelligent support assistant designed to automatically answer customer queries by learning from **historical support tickets and customer–agent conversations**.
+The AI Customer Service Agent is an intelligent support assistant designed to automatically answer customer queries by learning from historical support tickets and customer–agent conversations.
 
-Unlike traditional rule-based chatbots that respond with fixed answers, this system uses **Retrieval-Augmented Generation (RAG)** to ensure that every response is **grounded in real past data**, making answers more accurate, consistent, and trustworthy.
+Unlike traditional rule-based chatbots that respond with fixed answers, this system uses Retrieval-Augmented Generation (RAG) to ensure that every response is grounded in real past data, making answers more accurate, consistent, and trustworthy.
 
 The system significantly reduces repetitive workload on human support agents while improving response speed and customer satisfaction.
 
@@ -23,13 +23,13 @@ Customer support teams across industries (e-commerce, banking, SaaS, telecom) fa
 - Inconsistent responses across different agents
 - Increased response time and operational cost
 
-Despite having large amounts of historical ticket data, organizations **do not effectively reuse this knowledge** during live customer interactions.
+Despite having large amounts of historical ticket data, organizations do not effectively reuse this knowledge during live customer interactions.
 
 ---
 
 ## Proposed Solution
 
-We propose an **AI Customer Service Agent** that uses **RAG (Retrieval-Augmented Generation)** to generate accurate, context-aware responses by retrieving relevant past tickets and dialogue records before generating an answer.
+We propose an AI Customer Service Agent that uses RAG (Retrieval-Augmented Generation) to generate accurate, context-aware responses by retrieving relevant past tickets and dialogue records before generating an answer.
 
 Instead of directly generating a reply, the system:
 1. Searches historical tickets and chat logs
@@ -146,23 +146,6 @@ Final Answer to Customer
 | Backend (Optional)   | FastAPI                                |
 | Frontend (Optional)  | Streamlit                              |
 
----
-
-## Project Structure
-
-```
-project-root/
-│
-├── data/               # Sample tickets & dialogues
-├── app.py              # Main application
-├── rag_engine.py       # Retrieval logic
-├── embeddings.py       # Vector embedding creation
-├── requirements.txt    # Dependencies
-└── README.md
-```
-
----
-
 ## Installation & Setup
 
 ### 1. Clone the Repository
@@ -211,30 +194,3 @@ python app.py
 * AI support automation demos
 
 ---
-
-## Hackathon Relevance
-
-* ✔ Real-world business problem
-* ✔ Uses RAG architecture
-* ✔ Scalable and industry-ready
-* ✔ Simple and explainable design
-* ✔ Strong practical impact
-
----
-
-## Disclaimer
-
-This project is intended for **educational and hackathon purposes only**.
-It does not replace professional customer support agents and should be used as an assistive system.
-
----
-
-## Future Enhancements
-
-* Multi-language support
-* Agentic workflows (Critique / Escalation Agent)
-* Customer sentiment detection
-* Ticket auto-classification
-* CRM system integration
-
-```
