@@ -1,33 +1,44 @@
-import sys
+import pandas as pd
+import json
 import os
-import google.generativeai as genai
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Paths
+DATA_PATH = r"C:\Users\22nn1\OneDrive\Attachments\Desktop\VU Hackthon\CustomerInteractionData.csv"
+OUTPUT_PATH = "ingestion/processed_docs.json"
 
-genai.configure(api_key="AIzaSyBaXVO4uJ0ePQiKIhyc6w5qCW_452_7hhU")
-model = genai.GenerativeModel("gemini-pro")
+def preprocess_data():
+    df = pd.read_csv(DATA_PATH)
 
-def generate_answer(query, retrieved_docs):
-    if not retrieved_docs:
-        return None   # let step 6 handle escalation
+    documents = []
 
-    context = "\n".join([doc.page_content for doc in retrieved_docs])
+    for _, row in df.iterrows():
+        record_id = row["RecordID"]
+        customer_text = str(row["CustomerInteractionRawText"]).strip()
+        topic = str(row["AgentAssignedTopic"]).strip()
 
-    prompt = f"""
-You are a telecom customer support assistant.
+        # Skip empty or invalid text
+        if customer_text == "" or customer_text.lower() == "nan":
+            continue
 
-Use the following past customer support records to answer the question.
-Provide a clear and helpful response.
+        text = (
+            f"Customer reported the following issue: {customer_text}. "
+            f"The issue is categorized under {topic}."
+        )
 
-Context:
-{context}
+        doc = {
+            "record_id": int(record_id),
+            "text": text,
+            "category": topic
+        }
 
-Customer Question:
-{query}
+        documents.append(doc)
 
-Answer:
-"""
+    os.makedirs("ingestion", exist_ok=True)
 
-    response = model.generate_content(prompt)
-    return response.text.strip()
+    with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+        json.dump(documents, f, indent=2)
 
+    print(f"Preprocessing completed successfully. {len(documents)} documents created.")
+
+if __name__ == "__main__":
+    preprocess_data()
