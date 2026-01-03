@@ -2,9 +2,7 @@
 ## Project Overview
 
 This project focuses on building an AI-powered Customer Service Agent for a Telecommunications (Telco) support environment using Retrieval-Augmented Generation (RAG).
-The system assists customer support teams by automating responses to frequently asked questions, guiding users through basic troubleshooting steps, and escalating complex issues to human agents when required.
-
-By leveraging Large Language Models (LLMs) together with a vector database of historical telecom support tickets and dialogue conversations, the system delivers accurate, context-aware, and consistent responses. This improves response time, reduces agent workload, and enhances customer satisfaction.
+The system assists customer support teams by automating responses to frequently asked questions, guiding users through basic troubleshooting steps, and escalating complex issues to human agents when required.By leveraging Large Language Models (LLMs) together with a vector database of historical telecom support tickets and dialogue conversations, the system delivers accurate, context-aware, and consistent responses. This improves response time, reduces agent workload, and enhances customer satisfaction.
 
 # Tools & Technologies
 
@@ -33,6 +31,7 @@ Telecom Customer Support Dialogues (Kaggle) – customer–agent chat conversati
 Telecom Support Tickets – issue descriptions, categories, and resolutions
 
 Knowledge Base Articles – FAQs for billing, network issues, SIM problems, and plan upgrades
+Dataset Link: https://www.kaggle.com/datasets/avinashok/telecomagentcustomerinteractiontext
 
 # Step-by-Step Implementation Plan
 ## 1. Data Preparation
