@@ -37,13 +37,15 @@ The raw telecom interaction dataset contains short and noisy customer messages a
 
 Each record was converted into a clear natural-language document by combining the customer message with its assigned issue category. Invalid or empty records were filtered out, and the processed documents were stored in a structured JSON format to enable efficient embedding generation and semantic retrieval.
 
-## 2. Indexing & Embedding
+## 2. Embeddings and Vector Database
 
-Generate vector embeddings for all cleaned text chunks
+- Preprocessed customer interaction documents were converted into semantic embeddings using a sentence-transformer model to capture the meaning of customer issues.
 
-Store embeddings in ChromaDB or FAISS with metadata
+- The generated embeddings were stored in a Chroma vector database, which serves as the system’s memory for similarity-based retrieval.
 
-Configure a semantic retriever to find relevant content
+- Relevant metadata such as record ID and issue category were stored along with embeddings to support traceability and explainable results.
+
+- This step enables efficient semantic search and forms the core of the Retrieval-Augmented Generation (RAG) pipeline.
 
 ## 3. RAG Query Pipeline
 
