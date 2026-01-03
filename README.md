@@ -68,18 +68,9 @@ Dataset Link: https://www.kaggle.com/datasets/avinashok/telecomagentcustomerinte
 # Step-by-Step Implementation Plan
 ## 1. Data Preparation
 
-Load raw ticket and dialogue data from CSV/JSON files
+The raw telecom interaction dataset contains short and noisy customer messages along with multiple metadata fields. To prepare the data for a Retrieval-Augmented Generation (RAG) system, only essential columns such as the record ID, customer interaction text, and agent-assigned topic were selected, while irrelevant attributes were removed.
 
-Remove personally identifiable information (PII) and noise
-
-Convert data into a standard format:
-
-Question: Customer issue
-
-Answer: Agent resolution
-
-Split long conversations into smaller chunks (500–1000 tokens)
-
+Each record was converted into a clear natural-language document by combining the customer message with its assigned issue category. Invalid or empty records were filtered out, and the processed documents were stored in a structured JSON format to enable efficient embedding generation and semantic retrieval.
 ## 2. Indexing & Embedding
 
 Generate vector embeddings for all cleaned text chunks
